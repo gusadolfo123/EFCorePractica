@@ -1,0 +1,2 @@
+# EFCorePractica
+Practica EFCore
