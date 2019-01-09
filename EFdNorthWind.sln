@@ -9,15 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFdNorthWind.DAL", "EFdNort
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFdNorthWind.BLL", "EFdNorthWind.BLL\EFdNorthWind.BLL.csproj", "{24187631-3498-47E5-B0DF-FD912E35B137}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFdNorthWind.Web", "EFdNorthWind.Web\EFdNorthWind.Web.csproj", "{1B8B85BD-CEDC-4441-BD2A-FF5163310729}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFdNorthWind.Web", "EFdNorthWind.Web\EFdNorthWind.Web.csproj", "{1B8B85BD-CEDC-4441-BD2A-FF5163310729}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFdNorthWind.WPF", "EFdNorthWind.WPF\EFdNorthWind.WPF.csproj", "{956BC614-5255-451D-935F-07C4AEAF80E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFdNorthWind.Services", "EFdNorthWind.Services\EFdNorthWind.Services.csproj", "{8A47DBB4-9BDC-47F5-9D29-01F7C71FD879}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFdNorthWind.Services", "EFdNorthWind.Services\EFdNorthWind.Services.csproj", "{8A47DBB4-9BDC-47F5-9D29-01F7C71FD879}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFdNorthWind.Helpers", "EFdNorthWind.Helpers\EFdNorthWind.Helpers.csproj", "{F2BA7D84-AEA8-4330-A02B-2F5AC742983B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFdNorthWind.Helpers", "EFdNorthWind.Helpers\EFdNorthWind.Helpers.csproj", "{F2BA7D84-AEA8-4330-A02B-2F5AC742983B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFdNorthWind.Migrations", "EFdNorthWind.Migrations\EFdNorthWind.Migrations.csproj", "{B8E007F8-531F-4C71-BAC7-78970A914ABE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFdNorthWind.Migrations", "EFdNorthWind.Migrations\EFdNorthWind.Migrations.csproj", "{B8E007F8-531F-4C71-BAC7-78970A914ABE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

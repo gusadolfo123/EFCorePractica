@@ -6,6 +6,7 @@
     using System.Collections.Generic;
     using System.Text;
     using Helpers;
+    using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
     public class EFNorthWindContext: DbContext
     {
@@ -24,8 +25,29 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // validacion de entidades
+            // Configuracion Entidades
+            modelBuilder.Entity<Category>()
+                .Property(c => c.CategoryName)
+                .HasMaxLength(15)
+                .IsRequired();
 
+            modelBuilder.Entity<Product>()
+                .Property(p => p.ProductName)
+                .HasMaxLength(40)
+                .IsRequired();
+
+            modelBuilder.Entity<Log>
+                (
+                    lg => 
+                    {
+                        lg.Property(l => l.DateTime)
+                            .HasDefaultValueSql("GETDATE()");
+
+                        lg.Property(l => l.Type)
+                            .HasConversion(new EnumToStringConverter<LogType>())
+                            .HasMaxLength(20);
+                    }
+                );
 
             base.OnModelCreating(modelBuilder);
         }
