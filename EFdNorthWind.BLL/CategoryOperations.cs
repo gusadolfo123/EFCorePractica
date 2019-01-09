@@ -1,11 +1,9 @@
 ﻿namespace EFdNorthWind.BLL
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
     using EFdNorthWind.DAL;
     using EFdNorthWind.Entities;
     using EFdNorthWind.Services;
+    using System.Collections.Generic;
 
     public class CategoryOperations : ICategoryOperations
     {
