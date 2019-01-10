@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace EFdNorthWind.Web
+﻿namespace EFdNorthWind.Web
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.HttpsPolicy;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using EFdNorthWind.Services;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -33,6 +34,10 @@ namespace EFdNorthWind.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            // Configuracion de servicios
+            // solo usa una instancia
+            services.AddSingleton(typeof(ICategoryOperations), BLL.OperarionsFactory.GetCategoryOperations());
+            services.AddSingleton(typeof(ILogOperations), BLL.OperarionsFactory.GetLogOperations());
 
         }
 

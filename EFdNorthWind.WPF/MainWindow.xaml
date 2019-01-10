@@ -6,7 +6,37 @@
         xmlns:local="clr-namespace:EFdNorthWind.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <StackPanel Margin="20">
+        <StackPanel.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="0, 0, 0, 10" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="0, 15, 5, 10" />
+                <Setter Property="Width" Value="120" />
+            </Style>
+        </StackPanel.Resources>
+        <TextBlock Text="ID" />
+        <TextBox x:Name="CategoryID" Width="50" />
+        <TextBlock Text="Nombre" />
+        <TextBox x:Name="CategoryName" Width="150" />
+        <TextBlock Text="Descripcion" />
+        <TextBox x:Name="Description" Width="150" />
+        <CheckBox x:Name="WithLog" Content="Eliminar con Log" />
+        <StackPanel Orientation="Horizontal">            
+            <Button Content="Crear" Click="Create" />
+            <Button Content="Buscar" Click="Retrieve" />
+            <Button Content="Modificar" Click="Update" />
+            <Button Content="Eliminar" Click="Delete" />
+            <Button Content="Mostrar Categorias" Click="GetCategories" />
+            <Button Content="Mostrar Log" Click="GetLogs" />
+        </StackPanel>
+        <DataGrid x:Name="Data" 
+                  Width="Auto" 
+                  Height="Auto" 
+                  HorizontalAlignment="Right" 
+                  VerticalAlignment="Center" 
+                  Visibility="Hidden" />
+    </StackPanel>
 </Window>

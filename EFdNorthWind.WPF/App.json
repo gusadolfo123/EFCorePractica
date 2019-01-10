@@ -1,0 +1,4 @@
+{
+  "DatabaseProvider": "UseSqlServer",
+  "connectionString": "Server=(localdb)\\MSSQLLocalDB;Database=EFNorthWind;Trusted_Connection=True;MultipleActiveResultSets=true"
+}
