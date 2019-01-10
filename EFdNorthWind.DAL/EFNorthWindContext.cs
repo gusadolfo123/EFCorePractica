@@ -19,8 +19,6 @@
         {
             var connectionString = HelperConfiguration.GetAppConfiguration().ConnectionString;
             optionsBuilder.UseSqlServer(connectionString);
-
-            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -48,8 +46,6 @@
                             .HasMaxLength(20);
                     }
                 );
-
-            base.OnModelCreating(modelBuilder);
         }
     }
 }
