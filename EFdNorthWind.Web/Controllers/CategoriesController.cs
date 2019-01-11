@@ -17,15 +17,16 @@
             Helper = categoryOperations;
         }
 
-        public IActionResult Create(string name, string description)
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Category category)
         {
             IActionResult Result;
-
-            var category = new Category
-            {
-                CategoryName = name,
-                Description = description
-            };
 
             category = Helper.Create(category);
 

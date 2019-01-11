@@ -16,6 +16,18 @@
 
         List<Category> GetCategories();
 
+
+        Product CreateProduct(Product product);
+
+        Product RetrieveProductByID(int productID);
+
+        bool UpdateProduct(Product product);
+
+        bool DeleteProduct(int productID);
+
+        List<Product> GetProducts(); 
+        
+
         List<Log> GetLogs();
 
         Log CreateLog(Log log);

@@ -38,6 +38,7 @@
             // solo usa una instancia
             services.AddSingleton(typeof(ICategoryOperations), BLL.OperarionsFactory.GetCategoryOperations());
             services.AddSingleton(typeof(ILogOperations), BLL.OperarionsFactory.GetLogOperations());
+            services.AddSingleton(typeof(IProductOperations), BLL.OperarionsFactory.GetProductsOperations());
 
         }
 

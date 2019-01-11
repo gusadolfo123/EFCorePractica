@@ -90,6 +90,33 @@
             _context.Dispose();
         }
 
-       
+        public Product CreateProduct(Product product)
+        {
+            product = _context.Add(product).Entity;
+            Save();
+            return product;
+        }
+
+        public Product RetrieveProductByID(int productID)
+        {
+            return _context.Find<Product>(productID);
+        }
+
+        public bool UpdateProduct(Product product)
+        {
+            _context.Update(product);
+            return Save();
+        }
+
+        public bool DeleteProduct(int productID)
+        {
+            _context.Remove(new Product { ProductID = productID });
+            return Save();
+        }
+
+        public List<Product> GetProducts()
+        {
+            return _context.Products.ToList();
+        }
     }
 }

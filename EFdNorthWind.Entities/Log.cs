@@ -6,7 +6,8 @@
 
     public enum LogType
     {
-        DeleteCategory
+        DeleteCategory,
+        DeleteProduct
     }
 
     public class Log

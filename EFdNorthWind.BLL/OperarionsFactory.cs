@@ -16,5 +16,9 @@
         {
             return new LogOperations();
         }
+        public static IProductOperations GetProductsOperations()
+        {
+            return new ProductOperations();
+        }
     }
 }
