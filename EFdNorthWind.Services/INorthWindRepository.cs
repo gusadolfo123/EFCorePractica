@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
     using EFdNorthWind.Entities;
 
     public interface INorthWindRepository: IDisposable 
@@ -19,13 +20,13 @@
 
         Product CreateProduct(Product product);
 
-        Product RetrieveProductByID(int productID);
+        Product RetrieveProductByID(int productID, QueryParameters<Product> queryParameters = null);
 
         bool UpdateProduct(Product product);
 
         bool DeleteProduct(int productID);
 
-        List<Product> GetProducts(); 
+        List<Product> GetProducts(QueryParameters<Product> queryParameters = null); 
         
 
         List<Log> GetLogs();

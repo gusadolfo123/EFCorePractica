@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
     using System.Threading.Tasks;
     using EFdNorthWind.Entities;
     using EFdNorthWind.Services;
@@ -25,14 +26,28 @@
         // GET: Products
         public ActionResult Index() 
         {
-            var listProducts = Helper.GetAll().ToList();
+            var listProducts = Helper.GetAll(new QueryParameters<Product> 
+                { 
+                    Includes = new List<Expression<Func<Product, object>>> 
+                                { 
+                                    x => x.Category
+                                }
+                }).ToList();
             return View(listProducts);
         }
 
         // GET: Products/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var product = Helper.RetrieveByID(id, new QueryParameters<Product>
+            {
+                Includes = new List<Expression<Func<Product, object>>>
+                {
+                    x => x.Category
+                }
+            });
+
+            return View(product);
         }
 
         // GET: Products/Create
@@ -72,17 +87,30 @@
         // GET: Products/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var product = Helper.RetrieveByID(id, new QueryParameters<Product>
+            {
+                Includes = new List<Expression<Func<Product, object>>>
+                {
+                    x => x.Category
+                }
+            });
+
+            return View(product);
         }
 
         // POST: Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Product product)
         {
             try
             {
                 // TODO: Add update logic here
+                var resultUpdate = Helper.Update(product);
+                if (resultUpdate)
+                {
+                    return RedirectToAction(nameof(Details), product.ProductID);
+                }
 
                 return RedirectToAction(nameof(Index));
             }

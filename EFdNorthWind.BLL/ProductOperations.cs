@@ -3,7 +3,9 @@
     using EFdNorthWind.DAL;
     using EFdNorthWind.Entities;
     using EFdNorthWind.Services;
+    using System;
     using System.Collections.Generic;
+    using System.Linq.Expressions;
 
     public class ProductOperations : IProductOperations
     {
@@ -53,19 +55,19 @@
             return result;
         }
 
-        public List<Product> GetAll()
+        public List<Product> GetAll(QueryParameters<Product> queryParameters = null)
         {
-            return NorthWindRepositoryFactory.GetNorthWindRepository().GetProducts();
+            return NorthWindRepositoryFactory.GetNorthWindRepository().GetProducts(queryParameters);
         }
 
-        public Product RetrieveByID(int productID)
+        public Product RetrieveByID(int productID, QueryParameters<Product> queryParameters = null)
         {
             Product product = null;
             if (productID > 0)
             {
                 using (var repository = NorthWindRepositoryFactory.GetNorthWindRepository())
                 {
-                    product = repository.RetrieveProductByID(productID);
+                    product = repository.RetrieveProductByID(productID, queryParameters);
                 }
             }
             return product;

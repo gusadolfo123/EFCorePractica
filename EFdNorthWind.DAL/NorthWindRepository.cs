@@ -5,6 +5,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Linq.Expressions;
+    using Microsoft.EntityFrameworkCore;
 
     public class NorthWindRepository : INorthWindRepository
     {
@@ -97,9 +99,21 @@
             return product;
         }
 
-        public Product RetrieveProductByID(int productID)
+        public Product RetrieveProductByID(int productID, QueryParameters<Product> queryParameters = null)
         {
-            return _context.Find<Product>(productID);
+            var query = _context.Set<Product>().AsQueryable();
+            
+            if (queryParameters.Includes != null)
+            {
+                foreach (var include in queryParameters.Includes)
+                {
+                    query = query.Include(include);
+                }
+            }
+
+            var product = query.Where(p => p.ProductID == productID).FirstOrDefault();
+
+            return product;
         }
 
         public bool UpdateProduct(Product product)
@@ -114,9 +128,19 @@
             return Save();
         }
 
-        public List<Product> GetProducts()
+        public List<Product> GetProducts(QueryParameters<Product> queryParameters = null)
         {
-            return _context.Products.ToList();
+            var query = _context.Set<Product>().AsQueryable();
+
+            if (queryParameters.Includes != null)
+            {
+                foreach (var include in queryParameters.Includes)
+                {
+                    query = query.Include(include);
+                }
+            }
+
+            return query.ToList();
         }
     }
 }
