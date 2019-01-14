@@ -132,12 +132,16 @@
         {
             var query = _context.Set<Product>().AsQueryable();
 
-            if (queryParameters.Includes != null)
+            if (queryParameters != null)
             {
-                foreach (var include in queryParameters.Includes)
+                if (queryParameters.Includes != null)
                 {
-                    query = query.Include(include);
+                    foreach (var include in queryParameters.Includes)
+                    {
+                        query = query.Include(include);
+                    }
                 }
+                return query.Where(queryParameters.Where).ToList();
             }
 
             return query.ToList();

@@ -1,0 +1,62 @@
+﻿<Window x:Class="EFdNorthWind.WPF.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EFdNorthWind.WPF"
+        mc:Ignorable="d"
+        Title="ProductWindow" Height="450" Width="837.182">
+    <Grid>
+        <StackPanel Margin="20">
+            <StackPanel.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="0, 0, 0, 10" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="0, 15, 5, 10" />
+                    <Setter Property="Width" Value="110" />
+                </Style>
+            </StackPanel.Resources>
+
+            <StackPanel Margin="5,10,5,0" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="5, 0, 5, 10" />
+                        <Setter Property="HorizontalAlignment" Value="Left" />
+                    </Style>
+                </StackPanel.Resources>
+                
+                <TextBlock Text="ID" />
+                <TextBox x:Name="ProductID" Width="50" />
+                <TextBlock Text="Nombre Producto" />
+                <TextBox x:Name="ProductName" Width="150" />
+                <TextBlock Text="Precio" />
+                <TextBox x:Name="UnitPrice" Width="80" />
+                <TextBlock Text="Cantidad Unidades" />
+                <TextBox x:Name="UnitsInStock" Width="40" />
+                <TextBlock Text="Categoria" />
+                <ComboBox x:Name="Category" Width="120" HorizontalAlignment="Left" Margin="5, 0, 5, 10" />
+            </StackPanel>
+            
+            <CheckBox Margin="5,0,5,0" x:Name="WithLog" Content="Eliminar con Log" />
+            
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Crear" Click="Create" />
+                <Button Content="Buscar" Click="Retrieve" />
+                <Button Content="Modificar" Click="Update" />
+                <Button Content="Eliminar" Click="Delete" />
+                <Button Content="Mostrar Productos" Click="GetProducts" />
+                <Button Content="Filtrar Categoria" Click="GetProductsByCartegory" />
+                <Button Content="Mostrar Log" Click="GetLogs" />
+            </StackPanel>
+            <DataGrid x:Name="Data" 
+                  Width="Auto" 
+                  Height="Auto" 
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Center" 
+                  Visibility="Hidden" >
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>

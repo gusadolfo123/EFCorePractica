@@ -17,7 +17,7 @@
 
         List<Product> GetAll(QueryParameters<Product> queryParameters = null);
 
-        bool DeleteWithLog(int categoryID);
+        bool DeleteWithLog(int productID); 
 
     }
 }

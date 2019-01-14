@@ -24,15 +24,21 @@
         }
 
         // GET: Products
-        public ActionResult Index() 
+        public ActionResult Index(int CategoryID = 0) 
         {
+
             var listProducts = Helper.GetAll(new QueryParameters<Product> 
                 { 
                     Includes = new List<Expression<Func<Product, object>>> 
                                 { 
                                     x => x.Category
-                                }
-                }).ToList();
+                                },
+                    Where = x => x.CategoryID == (CategoryID != 0 ? CategoryID : x.CategoryID)
+            }).ToList();
+
+            ViewBag.Categories = new SelectList(HelperCategory.GetAll().ToList(), "CategoryID", "CategoryName", CategoryID);
+            ViewBag.Message = TempData["Message"];
+
             return View(listProducts);
         }
 
@@ -95,6 +101,7 @@
                 }
             });
 
+            ViewBag.Categories = new SelectList(HelperCategory.GetAll().ToList(), "CategoryID", "CategoryName", product.CategoryID);
             return View(product);
         }
 
@@ -109,22 +116,21 @@
                 var resultUpdate = Helper.Update(product);
                 if (resultUpdate)
                 {
-                    return RedirectToAction(nameof(Details), product.ProductID);
+                   return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return View(product);
                 }
 
-                return RedirectToAction(nameof(Index));
+                
             }
             catch
             {
-                return View();
+                return View(product);
             }
         }
 
-        // GET: Products/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
         // POST: Products/Delete/5
         [HttpPost]
@@ -133,13 +139,25 @@
         {
             try
             {
-                // TODO: Add delete logic here
+                var withLog = collection["WithLog"];
+
+                var deleteResult = withLog == "on" ? Helper.DeleteWithLog(id) : Helper.Delete(id);
+
+                if (deleteResult)
+                {
+                    TempData["Message"] = "Registro Eliminado";
+                }
+                else
+                {
+                    TempData["Message"] = "El Registro No Pudo Ser Eliminado";
+                }
 
                 return RedirectToAction(nameof(Index));
+
             }
             catch
             {
-                return View();
+                return RedirectToAction(nameof(Index));
             }
         }
     }
