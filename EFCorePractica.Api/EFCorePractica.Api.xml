@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EFCorePractica.Api</name>
+    </assembly>
+    <members>
+        <member name="M:EFCorePractica.Api.Controllers.ValuesController.Get">
+            <summary>
+            Get Para Todos los Productos
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:EFCorePractica.Api.Controllers.ValuesController.Get(System.Int32)">
+            <summary>
+            Get Para Producto Especifico
+            </summary>
+            <param name="id">Id del Producto</param>
+            <returns></returns>
+        </member>
+        <member name="M:EFCorePractica.Api.Controllers.ValuesController.GetProduct(EFdNorthWind.Entities.Product)">
+            <summary>
+            Post encargado de recibir y devolver un producto
+            </summary>
+            <param name="product"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EFCorePractica.Api.Controllers.ValuesController.Post(System.String)">
+            <summary>
+            Post de Creacion de Producto
+            </summary>
+            <param name="value"></param>
+        </member>
+    </members>
+</doc>
