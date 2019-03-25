@@ -7,6 +7,9 @@
     using System.Linq;
     using System.Linq.Expressions;
     using Microsoft.EntityFrameworkCore;
+    using System.Diagnostics;
+    using EFdNorthWind.Helpers.Log;
+    using EFdNorthWind.Entities.Enums;
 
     public class NorthWindRepository : INorthWindRepository
     {
@@ -62,8 +65,10 @@
                 try
                 {
                     result = _context.SaveChanges();
+                    // se implementa log personalizado
+                    LogHelper.Log(LogTarget.EventLog, _context.LogMessages);                    
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     throw;
                 }

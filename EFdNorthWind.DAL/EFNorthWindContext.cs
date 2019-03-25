@@ -17,8 +17,11 @@
         // singleton para que no se cree cada ves que instancian el contexto y evitar fugas de memoria
         public static readonly ILoggerFactory loggerFactory = 
             new ServiceCollection().AddLogging(builder => 
-                builder.AddDebug().AddFilter(Level => Level == LogLevel.Information)
+                builder.AddDebug().AddFilter((Category, Level) => Level == LogLevel.Information && Category == DbLoggerCategory.Database.Command.Name)
             ).BuildServiceProvider().GetService<ILoggerFactory>();
+
+        // propiedad apra exponer mensajes de log del proveedor creado
+        public List<string> LogMessages { get; set; } = new List<string>();
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
@@ -26,11 +29,21 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // condiguracion de proveedor personalizado
+            loggerFactory.AddProvider(new UpdateDeleteLoggerProvider(LogMessages));
+
             var connectionString = HelperConfiguration.GetAppConfiguration().ConnectionString;
             optionsBuilder.UseSqlServer(connectionString)
                 .UseLoggerFactory(loggerFactory) // proveedor de log
                 .EnableSensitiveDataLogging(); // para poder ver los valores que se hacen en un insert
 
+        }
+
+        public override int SaveChanges()
+        {
+            // cada que se lance un savechanges tendra los comandos que tiene ese savechanges
+            LogMessages.Clear();
+            return base.SaveChanges();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
