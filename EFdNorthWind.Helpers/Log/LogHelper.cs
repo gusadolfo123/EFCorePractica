@@ -12,22 +12,20 @@
 
         public static void Log(LogTarget target, List<string> messages)
         {
-            switch (target)
+            if(target == LogTarget.File)
             {
-                case LogTarget.File:
-                    logger = new FileLogger();
-                    logger.Log(messages);
-                    break;
-                case LogTarget.DataBase:
-                    logger = new DBLogger();
-                    logger.Log(messages);
-                    break;
-                case LogTarget.EventLog:
-                    logger = new EventLogger();
-                    logger.Log(messages);
-                    break;
-                default:
-                    return;
+                logger = new FileLogger();
+                logger.Log(messages);
+            }
+            else if (target == LogTarget.DataBase)
+            {
+                logger = new DBLogger();
+                logger.Log(messages);
+            }
+            else if (target == LogTarget.EventLog)
+            {
+                logger = new EventLogger();
+                logger.Log(messages);
             }
         }
     }

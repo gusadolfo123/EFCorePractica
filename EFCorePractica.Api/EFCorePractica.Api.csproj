@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Desarrollo Cursos\Diplomado EF Core\EFCorePractica\EFCorePractica.Api\EFCorePractica.Api.xml</DocumentationFile>
+    <DocumentationFile>E:\Desarrollo Cursos\DIPLOMADO EntityFramework\VS2017\EFCorePractica\EFCorePractica.Api\EFCorePractica.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
