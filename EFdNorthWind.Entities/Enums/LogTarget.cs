@@ -1,4 +1,8 @@
-﻿namespace EFdNorthWind.Entities.Enums
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace EFdNorthWind.Entities.Enums
 {
     public sealed class LogTarget
     {
@@ -9,10 +13,25 @@
         public readonly int Id;
         public readonly string Name;
 
-        public LogTarget(int id, string name)
+        private LogTarget(int id, string name)
         {
             Id = id;
             Name = name;
+        }
+
+        public static IReadOnlyCollection<LogTarget> GetLogTargets()
+        {
+            return new[] { File, DataBase, EventLog };
+        }
+
+        public static LogTarget FindBy(int id)
+        {
+            var target = GetLogTargets().SingleOrDefault(t => t.Id == id);
+            if (target == null)
+            {
+                throw new ArgumentOutOfRangeException($"Invalid id {id}");
+            }
+            return target;
         }
     }
 }
