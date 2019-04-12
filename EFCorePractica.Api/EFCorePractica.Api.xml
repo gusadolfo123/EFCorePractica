@@ -4,6 +4,24 @@
         <name>EFCorePractica.Api</name>
     </assembly>
     <members>
+        <member name="T:EFCorePractica.Api.Controllers.CategoriesController">
+            <summary>
+            Controlador encargado de realizar las acciones correspondientes para la entidad Category
+            </summary>
+        </member>
+        <member name="M:EFCorePractica.Api.Controllers.CategoriesController.GetAll">
+            <summary>
+            Metodo encargado de obtener el total de categorias 
+            </summary>
+            <returns>Listado de Categorias</returns>
+        </member>
+        <member name="M:EFCorePractica.Api.Controllers.CategoriesController.Get(System.Int32)">
+            <summary>
+            Metodo encargado de obtener una categoria con criterio de busqueda por CategoryID
+            </summary>
+            <param name="id">Indetificador unico de categoria CategoryID</param>
+            <returns>Categoria Encontrada</returns>
+        </member>
         <member name="M:EFCorePractica.Api.Controllers.ValuesController.Get">
             <summary>
             Get Para Todos los Productos

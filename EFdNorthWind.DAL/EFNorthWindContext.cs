@@ -59,6 +59,20 @@
                 .HasMaxLength(40)
                 .IsRequired();
 
+            /*  
+               implementacion de control de concurrencia
+               de esta manera si se cambia la propiedad CategoryName a la ves que otro usuario realizo un cambio a la misma
+               propiedad, se generara una excepcion de tipo DbUpdateCurrencyException
+            */ 
+            modelBuilder.Entity<Category>()
+                .Property(c => c.CategoryName)
+                .IsConcurrencyToken();
+
+            // se realiza asignacion de propiedad timestan para que funcione como token de concurrencia
+            modelBuilder.Entity<Category>()
+                .Property<byte[]>("Timestamp")
+                .IsRowVersion();
+
             modelBuilder.Entity<Log>
                 (
                     lg => 

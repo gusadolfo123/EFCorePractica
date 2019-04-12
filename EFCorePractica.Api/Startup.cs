@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using EFdNorthWind.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,7 +38,9 @@ namespace EFCorePractica.Api
             var filePath = Path.Combine(AppContext.BaseDirectory, "EFCorePractica.Api.xml");
             services.AddSwaggerGen(config => config.IncludeXmlComments(filePath));
 
-            
+            services.AddSingleton(typeof(ICategoryOperations), EFdNorthWind.BLL.OperarionsFactory.GetCategoryOperations());
+            services.AddSingleton(typeof(ILogOperations), EFdNorthWind.BLL.OperarionsFactory.GetLogOperations());
+            services.AddSingleton(typeof(IProductOperations), EFdNorthWind.BLL.OperarionsFactory.GetProductsOperations());
 
         }
 
